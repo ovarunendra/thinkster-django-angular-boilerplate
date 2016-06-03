@@ -13,7 +13,7 @@ class PostViewSet(viewsets.ModelViewSet):
 	def get_permissions(self):
 		if self.request.method in permissions.SAFE_METHODS:
 			return (permissions.AllowAny(),)
-		return (permissions.isAuthenticated(), IsAuthorOfPost(),)
+		return (permissions.IsAuthenticated(), IsAuthorOfPost(),)
 
 	def perform_create(self, serializer):
 		instance = serializer.save(author=self.request.user)
